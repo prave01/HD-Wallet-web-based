@@ -1,1 +1,5 @@
+.radial {
+  background: radial-gradient(closest-side, yellow 10% 60%, transparent);
+}
+
 

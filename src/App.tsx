@@ -1,7 +1,15 @@
+import "./App.css";
+
+import Background from "./Components/Background/Background";
+import Morning from "./Components/Template/Morning";
+
 function App() {
   return (
     <>
-      <h1> this is so cool !!! </h1>
+      <Background />
+      <div className="pl-6 pt-14 relative ">
+        <Morning />
+      </div>
     </>
   );
 }
