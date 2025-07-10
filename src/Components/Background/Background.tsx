@@ -29,7 +29,7 @@ const Background = ({ theme }: { theme: string }) => {
         key={theme}
         animate={{
           backgroundSize: ["10% 10%", "1000% 1000%"],
-          transition: { duration: 2 },
+          transition: { duration: 1},
         }}
         onAnimationComplete={onComplete}
       ></motion.div>
