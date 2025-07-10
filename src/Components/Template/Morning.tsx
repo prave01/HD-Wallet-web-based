@@ -5,7 +5,7 @@ const Morning = () => {
   return (
     <>
       <Sun />
-      <Clouds />
+      <Clouds color="bg-white blur-sm outline-2 outline-black" />
     </>
   );
 };

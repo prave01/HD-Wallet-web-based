@@ -1,5 +1,18 @@
-.radial {
-  background: radial-gradient(closest-side, yellow 10% 60%, transparent);
+body {
+  margin: 0;
+  padding: 0;
 }
 
+.radial {
+  background: radial-gradient(closest-side,
+      #f7ea34 10% 60%,
+      red 2%,
+      transparent);
+}
 
+.moon {
+  background: radial-gradient(closest-side,
+      #a3a0a0 10% 80%,
+      #c4f5e5 2%,
+      transparent);
+}

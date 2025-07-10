@@ -4,4 +4,4 @@ const Sun = () => {
   );
 };
 
-export default Sun 
+export default Sun;
