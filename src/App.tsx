@@ -1,38 +1,34 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 
 import Background from "./Components/Background/Background";
 import Morning from "./Components/Template/Morning";
 import Night from "./Components/Template/Night";
+import { motion } from "motion/react";
+import { cn } from "./lib/utils";
 
 function App() {
-  const [globalTheme, setTheme] = useState(() => {
-    return localStorage.getItem("theme") || "light";
-  });
+  const [globalTheme, setTheme] = useState("light");
 
   const handleClick = () => {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", globalTheme);
-    localStorage.setItem("theme", globalTheme);
-  }, [globalTheme]);
-
   return (
-    <div className={globalTheme}>
-      <div className="absolute w-full h-full">
+    <div className={cn(globalTheme, "h-screen w-screen overflow-hidden")}>
+      <div className="absolute h-full w-full">
         <Background key={globalTheme} theme={globalTheme} />
-        <div
+        <motion.div
           onClick={handleClick}
-          className="pl-4 pt-14 w-fit relative cursor-pointer"
+          className="relative h-fit w-fit cursor-pointer pt-14 pl-4"
         >
           {globalTheme === "light" ? <Morning /> : <Night />}
-        </div>
+        </motion.div>
       </div>
 
-      <div className="w-full h-full flex items-center justify-center">
-        <h1 className="font-medium text-primary text-2xl">This is the Title</h1>
+      <div className="mt-[14vh] flex h-full w-full items-start justify-center md:mt-[10vh]">
+        <h1 className="text-primary text-center text-[15vw] leading-relaxed font-medium tracking-wide md:text-9xl">
+          WORRIER
+        </h1>
       </div>
     </div>
   );

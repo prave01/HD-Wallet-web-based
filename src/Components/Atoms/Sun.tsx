@@ -1,6 +1,6 @@
 const Sun = () => {
   return (
-    <div className="radial flex items-start absolute w-[80px] h-[80px] -translate-y-10"></div>
+    <div className="radial absolute flex h-[80px] w-[80px] -translate-y-10 items-start"></div>
   );
 };
 

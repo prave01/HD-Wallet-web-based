@@ -18,9 +18,9 @@ const Background = ({ theme }: { theme: string }) => {
   return (
     <div>
       {" "}
-      <div className={`w-full h-full ${overlaybg} absolute -z-10`} />
+      <div className={`h-full w-full ${overlaybg} absolute -z-10`} />
       <motion.div
-        className="w-screen h-screen absolute flex items-start justify-start -z-10"
+        className="absolute -z-10 flex h-screen w-screen items-start justify-start"
         style={{
           background: `radial-gradient(circle at left 0%,${theme == "dark" ? "#010d08" : "#f5e6c4"} 10%, transparent 1%)`,
           backgroundRepeat: "no-repeat",

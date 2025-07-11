@@ -1,22 +1,23 @@
 body {
   margin: 0;
   padding: 0;
-}
-
-body {
   font-family: "Roboto Condensed", sans-serif;
 }
 
 .radial {
-  background: radial-gradient(closest-side,
-      #f7ea34 10% 60%,
-      red 2%,
-      transparent);
+  background: radial-gradient(
+    closest-side,
+    #f7ea34 10% 60%,
+    red 2%,
+    transparent
+  );
 }
 
 .moon {
-  background: radial-gradient(closest-side,
-      #a3a0a0 10% 80%,
-      #c4f5e5 2%,
-      transparent);
+  background: radial-gradient(
+    closest-side,
+    #a3a0a0 10% 80%,
+    #c4f5e5 2%,
+    transparent
+  );
 }
