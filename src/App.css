@@ -5,19 +5,29 @@ body {
 }
 
 .radial {
-  background: radial-gradient(
-    closest-side,
-    #f7ea34 10% 60%,
-    red 2%,
-    transparent
-  );
+  background: radial-gradient(closest-side,
+      #f7ea34 10% 60%,
+      red 2%,
+      transparent);
 }
 
 .moon {
-  background: radial-gradient(
-    closest-side,
-    #a3a0a0 10% 80%,
-    #c4f5e5 2%,
-    transparent
-  );
+  background: radial-gradient(closest-side,
+      #a3a0a0 10% 80%,
+      #c4f5e5 2%,
+      transparent);
 }
+
+.checks {
+  translate: -2px -220px;
+  background: conic-gradient(transparent 0deg,
+      transparent 120deg,
+      rgba(255, 0, 255, 0.5) 120deg,
+      120deg,
+      /* magenta with 50% opacity */
+      rgba(245, 230, 196, 0.42) 240deg,
+      /* red with 50% opacity */
+      transparent 240deg,
+      transparent 360deg);
+}
+
