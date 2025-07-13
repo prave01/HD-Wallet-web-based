@@ -1,7 +1,15 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@font-face {
+  font-family: "Super";
+  src: url("/src/Assets/super_font.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 @theme inline {
+  --font-super: Super, sans-serif;
   --color-primary: var(--primary);
 }
 
