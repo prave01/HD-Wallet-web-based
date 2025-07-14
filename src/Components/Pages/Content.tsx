@@ -1,6 +1,6 @@
 import { Button } from "@/Shadcn_Components/shadcn_ui/button";
 import FightClub from "../Template/FightClub";
-import Modal from "../Atoms/Molecules/Modal";
+import Modal from "../Molecules/Modal";
 import React, { useState } from "react";
 import NewAccount from "../Template/NewAccount";
 import LoginAccount from "../Template/LoginAccount";
