@@ -31,3 +31,13 @@ body {
       transparent 360deg);
 }
 
+::-moz-selection {
+  /* Code for Firefox */
+  color: red;
+  background: yellow;
+}
+
+::selection {
+  color: red;
+  background: yellow;
+}
