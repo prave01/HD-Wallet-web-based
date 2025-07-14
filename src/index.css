@@ -10,7 +10,12 @@
 
 @theme inline {
   --font-super: Super, sans-serif;
+
   --color-primary: var(--primary);
+
+  --color-secondary: var(--secondary);
+
+  --color-cardbg: var(--cardbg);
 }
 
 @layer base {
@@ -20,9 +25,13 @@
 
   .light {
     --primary: black;
+    --secondary: black;
+    --cardbg: #ffb300;
   }
 
   .dark {
     --primary: #f5e6c4;
+    --secondary: #ffb300;
+    --cardbg: black;
   }
 }

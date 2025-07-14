@@ -1,9 +1,11 @@
+import CreatePassword from "../Molecules/CreatePassword";
+
 const NewAccount = () => {
-  return (
-    <>
-      <p className="text-primary text-2xl">This is from New Account</p>
-    </>
-  );
+	return (
+		<>
+			<CreatePassword />
+		</>
+	);
 };
 
 export default NewAccount;
