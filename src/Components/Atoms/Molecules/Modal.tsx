@@ -2,19 +2,21 @@ import * as motion from "motion/react-client";
 import { cn } from "@/lib/utils";
 import { Button } from "@/Shadcn_Components/shadcn_ui/button";
 import { AnimatePresence } from "motion/react";
+import type React from "react";
 
 const Modal = ({
   className,
   open,
   setOpen,
+  children,
 }: {
   className: string;
   open: boolean;
   setOpen: (message: boolean) => void;
+  children: React.ReactNode;
 }) => {
   return (
     <motion.div
-      onClick={() => setOpen(false)}
       className={cn(
         "absolute z-50 h-screen w-screen items-center justify-center bg-black/60",
         className,
@@ -46,6 +48,7 @@ const Modal = ({
               {" "}
               Close{" "}
             </Button>
+            {children}
           </motion.div>
         )}
       </AnimatePresence>

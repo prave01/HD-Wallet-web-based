@@ -1,15 +1,13 @@
 import { Button } from "@/Shadcn_Components/shadcn_ui/button";
 import FightClub from "../Template/FightClub";
 import Modal from "../Atoms/Molecules/Modal";
-import { useState } from "react";
+import React, { useState } from "react";
+import NewAccount from "../Template/NewAccount";
+import LoginAccount from "../Template/LoginAccount";
 
 const Content = () => {
   const [OpenModal, SetOpenModal] = useState<boolean>(false);
-
-  const handleClick = () => {
-    console.log(OpenModal);
-    SetOpenModal(!OpenModal);
-  };
+  const [ModalComponet, SetModalComponet] = useState<React.ReactNode>();
 
   return (
     <div className="relative flex h-full w-full">
@@ -24,7 +22,10 @@ const Content = () => {
           <div className="flex items-center gap-2">
             <p>If you are new to the club =&gt;</p>
             <Button
-              onClick={handleClick}
+              onClick={() => {
+                SetModalComponet(<NewAccount />);
+                SetOpenModal(true);
+              }}
               className="text-primary cursor-pointer border-2 border-amber-600 bg-amber-700 text-lg font-medium hover:bg-transparent"
             >
               {" "}
@@ -33,7 +34,13 @@ const Content = () => {
           </div>
           <hr className="broder-black mt-4 mb-4 w-full border-1 border-dashed" />
           <div className="flex items-center gap-2">
-            <Button className="text-primary cursor-pointer border-2 border-amber-600 bg-amber-700 text-lg font-medium hover:bg-transparent">
+            <Button
+              onClick={() => {
+                SetModalComponet(<LoginAccount />);
+                SetOpenModal(true);
+              }}
+              className="text-primary cursor-pointer border-2 border-amber-600 bg-amber-700 text-lg font-medium hover:bg-transparent"
+            >
               {" "}
               Login to wallet{" "}
             </Button>
@@ -42,8 +49,10 @@ const Content = () => {
         </div>
       </div>
 
-      <Modal setOpen={SetOpenModal} open={OpenModal} className="" />
-      
+      <Modal setOpen={SetOpenModal} open={OpenModal} className="">
+        {ModalComponet}
+      </Modal>
+
       <div className="absolute bottom-0 flex w-full flex-row items-end justify-between">
         <div>
           <h1 className="text-primary text-left text-[15vw] leading-24 font-medium tracking-wide md:text-9xl">
