@@ -21,12 +21,13 @@ function App() {
         "relative h-screen w-screen overflow-hidden",
       )}
     >
-      <div className="absolute -z-10 h-full w-full">
+      <div className="absolute -z-40 h-full w-full">
         <Background key={globalTheme} theme={globalTheme} />
       </div>
       <motion.div
         onClick={handleClick}
-        className="absolute z-10 cursor-pointer pt-14 pl-5"
+        className="absolute z-50 cursor-pointer pt-14 pl-5"
+
       >
         {globalTheme === "light" ? <Morning /> : <Night />}
       </motion.div>
