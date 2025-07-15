@@ -1,34 +1,87 @@
+import zxcvbn from "zxcvbn";
+
 import {
-	Card,
-	CardAction,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
 } from "@/Shadcn_Components/shadcn_ui/card";
+import { Input } from "@/Shadcn_Components/shadcn_ui/input";
+import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/Shadcn_Components/shadcn_ui/button";
 
 const CreatePassword = () => {
-	return (
-		<div className="h-full w-full px-4 pt-20">
-			<Card className="text-secondary bg-cardbg h-fit w-[500px] rounded-sm text-xl font-semibold">
-				<CardHeader>
-					<CardTitle>Yow, Create a secure password</CardTitle>
-					<CardDescription>Card Description</CardDescription>
-					<CardAction className="rounded-full text-lg -translate-y-5 border-2 border-green-800 p-1 px-2 text-green-500">
+  const [Password, setPassword] = useState<string>("");
+  const [ConfirmPassword, setConfirmPassword] = useState<string>("");
+  const [Match, setMatch] = useState<boolean>(false);
 
-						Ongoing
-					</CardAction>
-				</CardHeader>
-				<CardContent>
-					<p>Card Content</p>
-				</CardContent>
-				<CardFooter>
-					<p>Card Footer</p>
-				</CardFooter>
-			</Card>
-		</div>
-	);
+  const result = zxcvbn(Password);
+
+  useEffect(() => {
+    if (ConfirmPassword == Password && (ConfirmPassword && Password) != "") {
+      setMatch(true);
+    } else {
+      setMatch(false);
+    }
+  }, [ConfirmPassword, Password]);
+
+  return (
+    <Card className="text-secondary h-fit w-[500px] rounded-sm border-0 text-lg font-semibold tracking-wider shadow-none shadow-amber-800">
+      <CardHeader className="">
+        <CardTitle className="text-xl font-semibold underline underline-offset-2">
+          Create wallet password
+        </CardTitle>
+        {/* <CardAction className="rounded-full text-lg -translate-y-5 border-2 border-green-800 p-1 px-2 text-green-500"> */}
+        {/**/}
+        {/* 	Ongoing */}
+        {/* </CardAction> */}
+      </CardHeader>
+      <CardContent>
+        <Input
+          value={Password}
+          type="password"
+          onPaste={(e) => e.preventDefault()}
+          required
+          className="text-primary border-0 bg-amber-900 outline-0"
+          onInput={(target) => {
+            target.preventDefault();
+            setPassword(target.currentTarget.value);
+            setConfirmPassword("");
+          }}
+          placeholder="PASSWORD"
+        ></Input>
+        <p className={cn(result.score < 4 ? "text-red-700" : "text-green-800")}>
+          Score: {result.score}
+        </p>
+        <br />
+        <Input
+          value={ConfirmPassword}
+          onPaste={(e) => e.preventDefault()}
+          type="password"
+          disabled={result.score >= 4 ? false : true}
+          className="text-primary border-0 bg-amber-900 outline-0"
+          onInput={(target) => {
+            setConfirmPassword(target.currentTarget.value);
+          }}
+          placeholder="RETYPE PASSWORD"
+        ></Input>
+        <p className={cn(Match ? "text-green-800" : "text-red-700")}>
+          {Match ? "Matched" : "Not Matched"}
+        </p>
+      </CardContent>
+      <CardFooter>
+        <Button
+          disabled={result.score >= 4 && Match ? false : true}
+          className="text-primary cursor-pointer border-2 border-amber-600 bg-amber-700 text-lg font-medium hover:bg-transparent"
+        >
+          {" "}
+          Submit{" "}
+        </Button>
+      </CardFooter>
+    </Card>
+  );
 };
 
 export default CreatePassword;
