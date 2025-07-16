@@ -27,6 +27,7 @@ const GenerateMnemonics = () => {
 
   const handleCopy = async () => {
     try {
+     copy(mnemonic.join(" "));
       setCopied(true);
       setTimeout(() => setCopied(false), 3000);
     } catch (err) {
