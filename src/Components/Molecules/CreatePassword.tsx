@@ -1,4 +1,5 @@
 import zxcvbn from "zxcvbn";
+import { createContext } from "react";
 
 import {
   Card,
@@ -17,8 +18,9 @@ const CreatePassword = () => {
   const [ConfirmPassword, setConfirmPassword] = useState<string>("");
   const [Match, setMatch] = useState<boolean>(false);
 
-  const result = zxcvbn(Password);
+  const [SubmitClick, setSubmitClick] = useState<boolean>(false);
 
+  const result = zxcvbn(Password);
   useEffect(() => {
     if (ConfirmPassword == Password && (ConfirmPassword && Password) != "") {
       setMatch(true);
@@ -37,6 +39,7 @@ const CreatePassword = () => {
         {/**/}
         {/* 	Ongoing */}
         {/* </CardAction> */}
+        <br className="h-10 w-[40px] border-2 border-amber-200 bg-white text-amber-200" />
       </CardHeader>
       <CardContent>
         <Input
@@ -44,6 +47,7 @@ const CreatePassword = () => {
           type="password"
           onPaste={(e) => e.preventDefault()}
           required
+          disabled={result.score! >= 4 && SubmitClick ? true : false}
           className="text-primary border-0 bg-amber-900 outline-0"
           onInput={(target) => {
             target.preventDefault();
@@ -60,7 +64,7 @@ const CreatePassword = () => {
           value={ConfirmPassword}
           onPaste={(e) => e.preventDefault()}
           type="password"
-          disabled={result.score >= 4 ? false : true}
+          disabled={result.score! >= 4 && SubmitClick ? true : false}
           className="text-primary border-0 bg-amber-900 outline-0"
           onInput={(target) => {
             setConfirmPassword(target.currentTarget.value);
@@ -73,11 +77,18 @@ const CreatePassword = () => {
       </CardContent>
       <CardFooter>
         <Button
-          disabled={result.score >= 4 && Match ? false : true}
+          onClick={() => {
+            setSubmitClick(true);
+            //@ts-ignore
+            const PasswordContext = createContext<string | null>(
+              Match && result.score >= 4 ? ConfirmPassword : null,
+            );
+          }}
+          disabled={result.score >= 4 && Match && !SubmitClick ? false : true}
           className="text-primary cursor-pointer border-2 border-amber-600 bg-amber-700 text-lg font-medium hover:bg-transparent"
         >
           {" "}
-          Submit{" "}
+          {SubmitClick ? "Loading..." : "Submit"}{" "}
         </Button>
       </CardFooter>
     </Card>
