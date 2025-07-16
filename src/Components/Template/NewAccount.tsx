@@ -5,7 +5,7 @@ const NewAccount = () => {
   return (
     <div className="bg-cardbg flex h-full w-full items-center justify-center rounded-lg">
       <GenerateMnemonics />
-      <CreatePassword />
+      {/* <CreatePassword /> */}
     </div>
   );
 };
