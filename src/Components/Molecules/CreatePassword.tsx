@@ -1,5 +1,4 @@
 import zxcvbn from "zxcvbn";
-import { createContext } from "react";
 
 import {
   Card,
@@ -28,7 +27,6 @@ const CreatePassword = () => {
       setMatch(false);
     }
   }, [ConfirmPassword, Password]);
-
   return (
     <Card className="text-secondary h-fit w-[500px] rounded-sm border-0 text-lg font-semibold tracking-wider shadow-none shadow-amber-800">
       <CardHeader className="">
@@ -77,13 +75,7 @@ const CreatePassword = () => {
       </CardContent>
       <CardFooter>
         <Button
-          onClick={() => {
-            setSubmitClick(true);
-            //@ts-ignore
-            const PasswordContext = createContext<string | null>(
-              Match && result.score >= 4 ? ConfirmPassword : null,
-            );
-          }}
+          onClick={() => setSubmitClick(true)}
           disabled={result.score >= 4 && Match && !SubmitClick ? false : true}
           className="text-primary cursor-pointer border-2 border-amber-600 bg-amber-700 text-lg font-medium hover:bg-transparent"
         >
