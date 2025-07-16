@@ -28,9 +28,9 @@ const Modal = ({
         {open && (
           <motion.div
             initial={{
-              translateZ: 1000,
-              translateY: 500,
-              translateX: 500,
+              // translateZ: 1000,
+              // translateY: 500,
+              // translateX: 500,
               scale: 0.2,
             }}
             animate={
@@ -39,18 +39,18 @@ const Modal = ({
                 : { scale: 0.5, translateY: 500, translateX: 500 }
             }
             transition={{
-              translateX: { duration: 1, ease: "easeOut" },
-              translateY: { duration: 1, ease: "easeOut" },
-              translateZ: { duration: 1, ease: "easeOut" },
-              opacity: { delay: 1, duration: 0.5 },
-              scale: { delay: 1, duration: 0.5, type: "tween" },
+              // translateX: { duration: 1, ease: "easeOut" },
+              // translateY: { duration: 1, ease: "easeOut" },
+              // translateZ: { duration: 1, ease: "easeOut" },
+              // opacity: { delay: 1, duration: 0.5 },
+              scale: { delay: 0.2, duration: 0.4, type: "tween" },
             }}
             className="h-[95%] w-[95%] rounded-xl border-2 border-amber-600 bg-black/40 p-1 pt-16 backdrop-blur-2xl"
           >
             {" "}
             <Button
               onClick={() => setOpen(false)}
-              className="text-primary hover:text-amber-200 absolute top-0 right-0 mt-2 mr-2 cursor-pointer border-2 border-amber-600 bg-amber-700 text-lg font-medium hover:bg-transparent"
+              className="text-primary absolute top-0 right-0 mt-2 mr-2 cursor-pointer border-2 border-amber-600 bg-amber-700 text-lg font-medium hover:bg-transparent hover:text-amber-200"
             >
               {" "}
               Close{" "}
