@@ -2,13 +2,21 @@ import CreatePassword from "../Molecules/CreatePassword";
 import GenerateMnemonics from "../Molecules/GenerateMnemonics";
 import { useState } from "react";
 import ComponentMap from "../Molecules/ComponentMap";
+import SelectCoin from "../Molecules/SelectCoin";
 
 const NewAccount = () => {
 	const [currentComp, setCurrentComp] = useState<number>(0);
 
+	const [password, setPassword] = useState<string | null>("");
+
+	const [coin, setCoin] = useState<string>("");
+
+	const [mnemonics, setMnemonics] = useState<string>("");
+
 	const Components: Array<React.ReactNode> = [
-		<GenerateMnemonics setNext={setCurrentComp} />,
-		<CreatePassword />,
+		<GenerateMnemonics setMnemonic={setMnemonics} setNext={setCurrentComp} />,
+		<CreatePassword setPassword={setPassword} setNext={setCurrentComp} />,
+		<SelectCoin setCoin={setCoin} />,
 	];
 
 	return (
@@ -19,9 +27,9 @@ const NewAccount = () => {
 				data={[
 					{ name: "GenerateMnemonics", default: "mute" },
 					{ name: "CreatePassword", default: "mute" },
+					{ name: "SelectCoin", default: "mute" },
 				]}
 			/>
-
 			{Components[currentComp]}
 		</div>
 	);

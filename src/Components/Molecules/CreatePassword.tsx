@@ -13,21 +13,30 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/Shadcn_Components/shadcn_ui/button";
 import { motion } from "motion/react";
 
-const CreatePassword = () => {
-	const [Password, setPassword] = useState<string>("");
+const CreatePassword = ({
+	setNext,
+	setPassword,
+}: {
+	setNext: (message: any) => void;
+	setPassword: (message: any) => void;
+}) => {
+	const [currentPassword, setCurrentPassword] = useState<string>("");
 	const [ConfirmPassword, setConfirmPassword] = useState<string>("");
 	const [Match, setMatch] = useState<boolean>(false);
 
 	const [SubmitClick, setSubmitClick] = useState<boolean>(false);
 
-	const result = zxcvbn(Password);
+	const result = zxcvbn(currentPassword);
 	useEffect(() => {
-		if (ConfirmPassword == Password && (ConfirmPassword && Password) != "") {
+		if (
+			ConfirmPassword == currentPassword &&
+			(ConfirmPassword && currentPassword) != ""
+		) {
 			setMatch(true);
 		} else {
 			setMatch(false);
 		}
-	}, [ConfirmPassword, Password]);
+	}, [ConfirmPassword, currentPassword]);
 	return (
 		<motion.div
 			initial={{
@@ -56,7 +65,7 @@ const CreatePassword = () => {
 				</CardHeader>
 				<CardContent>
 					<Input
-						value={Password}
+						value={currentPassword}
 						type="password"
 						onPaste={(e) => e.preventDefault()}
 						required
@@ -64,7 +73,7 @@ const CreatePassword = () => {
 						className="text-primary border-0 bg-amber-900 outline-0"
 						onInput={(target) => {
 							target.preventDefault();
-							setPassword(target.currentTarget.value);
+							setCurrentPassword(target.currentTarget.value);
 							setConfirmPassword("");
 						}}
 						placeholder="PASSWORD"
@@ -92,7 +101,12 @@ const CreatePassword = () => {
 				</CardContent>
 				<CardFooter>
 					<Button
-						onClick={() => setSubmitClick(true)}
+						onClick={() => {
+							setSubmitClick(true);
+							setPassword(ConfirmPassword);
+							//@ts-ignore
+							setNext((prev) => prev + 1);
+						}}
 						disabled={result.score >= 4 && Match && !SubmitClick ? false : true}
 						className="text-primary w-20 cursor-pointer rounded-lg bg-yellow-600 p-4 text-center hover:bg-gray-600 hover:text-amber-200"
 					>

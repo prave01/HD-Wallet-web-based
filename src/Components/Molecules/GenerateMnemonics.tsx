@@ -14,8 +14,14 @@ import { useState } from "react";
 import copy from "copy-to-clipboard";
 import { PulseLoader } from "react-spinners";
 
-const GenerateMnemonics = ({ setNext }: { setNext: (messge: any) => void }) => {
-	const [mnemonic, setMnemonic] = useState<string[]>([]);
+const GenerateMnemonics = ({
+	setNext,
+	setMnemonic,
+}: {
+	setNext: (message: any) => void;
+	setMnemonic: (message: string) => void;
+}) => {
+	const [mnemonic, setCurrentMnemonic] = useState<string[]>([]);
 	const [copied, setCopied] = useState(false);
 	const [loader, setLoader] = useState(false);
 	const [buttonClicked, setButtonClicked] = useState(false);
@@ -24,7 +30,7 @@ const GenerateMnemonics = ({ setNext }: { setNext: (messge: any) => void }) => {
 		setLoader(true);
 
 		const result = await generateWalletMnemonic();
-		setMnemonic(result.split(" "));
+		setCurrentMnemonic(result.split(" "));
 		setLoader(false);
 	}
 
@@ -114,8 +120,11 @@ const GenerateMnemonics = ({ setNext }: { setNext: (messge: any) => void }) => {
 						)}
 					</Button>
 					<Button
-						//@ts-ignore
-						onClick={() => setNext((prev) => prev + 1)}
+						onClick={() => {
+							//@ts-ignore
+							setNext((prev) => prev + 1);
+							setMnemonic(mnemonic.join(" "));
+						}}
 						disabled={buttonClicked ? false : true}
 						className="text-primary w-20 cursor-pointer rounded-lg bg-yellow-600 p-4 text-center hover:bg-gray-600 hover:text-amber-200"
 					>
