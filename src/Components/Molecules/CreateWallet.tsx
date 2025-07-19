@@ -17,8 +17,7 @@ const CreateWallet = ({
 
 		const encryptData = async () => {
 			setLoading(true);
-			const result = await Encrypt(password, mnemonics);
-			console.log(result);
+			await Encrypt(password, mnemonics);
 			setLoading(false);
 		};
 

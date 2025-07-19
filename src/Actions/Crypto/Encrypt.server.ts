@@ -15,7 +15,7 @@ export async function Encrypt(password: string, mnemonic_text: string) {
 		keyLength,
 		digest,
 		salt,
-	); // ✅ returns Uint8Array
+	);
 
 	const nonce = nacl.randomBytes(nacl.secretbox.nonceLength);
 	const encoder = new TextEncoder();
