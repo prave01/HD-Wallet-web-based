@@ -20,7 +20,7 @@ const DerivationKey = async (
 		);
 
 	const keyBuffer = await derive();
-	return new Uint8Array(keyBuffer); // 🔁 ensure Uint8Array
+	return new Uint8Array(keyBuffer); 
 };
 
 export default DerivationKey;

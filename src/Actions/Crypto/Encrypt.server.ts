@@ -21,7 +21,7 @@ export async function Encrypt(password: string, mnemonic_text: string) {
 	const encoder = new TextEncoder();
 	const plaintextBytes = encoder.encode(mnemonic_text);
 
-	const CipherText = nacl.secretbox(plaintextBytes, nonce, Key); // ✅ all inputs are Uint8Array
+	const CipherText = nacl.secretbox(plaintextBytes, nonce, Key);
 
 	return {
 		cipherText: bs58.encode(CipherText),

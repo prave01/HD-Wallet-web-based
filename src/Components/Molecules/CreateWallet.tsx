@@ -14,13 +14,12 @@ const CreateWallet = ({
 
 	useEffect(() => {
 		if (!password || !mnemonics) return;
-
 		const encryptData = async () => {
 			setLoading(true);
-			await Encrypt(password, mnemonics);
+			const result = await Encrypt(password, mnemonics);
 			setLoading(false);
+			localStorage.setItem("mobswallet", JSON.stringify(result));
 		};
-
 		encryptData();
 	}, []);
 
