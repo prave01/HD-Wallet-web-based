@@ -2,9 +2,8 @@ import type { SetStateAction } from "react";
 
 type CompMapTypes = {
   data: Array<{
-    name: string | null;
-    default: "mute" | "unmute";
+    name: string;
   }>;
-  currentComp: number;
+  currentComp: number | null;
   className?: string | undefined;
 };

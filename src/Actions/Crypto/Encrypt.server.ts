@@ -1,25 +1,27 @@
-import { randomBytes, secretbox } from "tweetnacl";
+import nacl from "tweetnacl";
 import bs58 from "bs58";
-import DerivationKey from "./DeriveEncrytionKey";
+import DerivationKey from "./DeriveEncryptionKey.server.ts";
 
-export default async function Encrypt(password: string, mnemonic_text: string) {
+export async function Encrypt(password: string, mnemonic_text: string) {
 	const iterations = 600000;
 	const digest = "sha256";
 	const kdf = "pbkdf2";
-	const keyLength = secretbox.keyLength;
-	const salt = randomBytes(16);
+	const keyLength = nacl.secretbox.keyLength;
+	const salt = nacl.randomBytes(16);
 
 	const Key = await DerivationKey(
 		password,
-		keyLength,
 		iterations,
+		keyLength,
 		digest,
 		salt,
-	);
+	); // ✅ returns Uint8Array
 
-	const nonce = randomBytes(secretbox.nonceLength);
+	const nonce = nacl.randomBytes(nacl.secretbox.nonceLength);
+	const encoder = new TextEncoder();
+	const plaintextBytes = encoder.encode(mnemonic_text);
 
-	const CipherText = secretbox(Buffer.from(mnemonic_text), nonce, Key);
+	const CipherText = nacl.secretbox(plaintextBytes, nonce, Key); // ✅ all inputs are Uint8Array
 
 	return {
 		cipherText: bs58.encode(CipherText),

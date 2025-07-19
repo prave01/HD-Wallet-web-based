@@ -6,9 +6,9 @@ const DerivationKey = async (
 	keyLength: number,
 	digest: string,
 	salt: Uint8Array,
-): Promise<any> => {
+): Promise<Uint8Array> => {
 	const derive = () =>
-		new Promise((resolve, reject) =>
+		new Promise<Buffer>((resolve, reject) =>
 			Crypto.pbkdf2(
 				password,
 				salt,
@@ -19,7 +19,8 @@ const DerivationKey = async (
 			),
 		);
 
-	return derive;
+	const keyBuffer = await derive();
+	return new Uint8Array(keyBuffer); // 🔁 ensure Uint8Array
 };
 
-export default DerivationKey
+export default DerivationKey;
