@@ -6,7 +6,13 @@ import {
 } from "@/Shadcn_Components/shadcn_ui/card";
 import { motion } from "motion/react";
 
-const SelectCoin = ({ setCoin }: { setCoin: (message: string) => void }) => {
+const SelectCoin = ({
+	setCoin,
+	setNext,
+}: {
+	setCoin: (message: string) => void;
+	setNext: (message: any) => void;
+}) => {
 	return (
 		<motion.div
 			initial={{
@@ -29,14 +35,22 @@ const SelectCoin = ({ setCoin }: { setCoin: (message: string) => void }) => {
 				</CardTitle>
 				<CardContent className="flex w-full items-center justify-center gap-10">
 					<Button
-						onClick={() => setCoin("eth")}
+						onClick={() => {
+							setCoin("eth");
+							//@ts-ignore
+							setNext((prev) => prev + 1);
+						}}
 						className="text-primary flex h-auto w-auto flex-col items-center justify-center rounded-md bg-amber-600 p-4 text-lg hover:bg-amber-950 hover:text-amber-300"
 					>
 						<img src="./eth.png" className="h-[100px] w-[100px]" />
 						<p className="">Etherem</p>
 					</Button>
 					<Button
-						onClick={() => setCoin("sol")}
+						onClick={() => {
+							setCoin("sol");
+							//@ts-ignore
+							setNext((prev) => prev + 1);
+						}}
 						className="text-primary flex h-auto w-auto flex-col items-center justify-center rounded-md bg-amber-600 p-4 text-lg hover:bg-amber-950 hover:text-amber-300"
 					>
 						<img src="./sol.png" className="h-[100px] w-[100px]" />

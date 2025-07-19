@@ -16,8 +16,8 @@ const NewAccount = () => {
 	const Components: Array<React.ReactNode> = [
 		<GenerateMnemonics setMnemonic={setMnemonics} setNext={setCurrentComp} />,
 		<CreatePassword setPassword={setPassword} setNext={setCurrentComp} />,
-		<SelectCoin setCoin={setCoin} />,
-	];
+		<SelectCoin setCoin={setCoin} setNext={setCurrentComp} />, 
+  ];
 
 	return (
 		<div className="bg-cardbg relative flex h-full w-full flex-col items-center justify-center rounded-lg">
