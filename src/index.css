@@ -3,7 +3,7 @@
 
 @font-face {
   font-family: "Super";
-  src: url("/src/Assets/super_font.ttf") format("truetype");
+  src: url("/src/Assets/fonts/super_font.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
