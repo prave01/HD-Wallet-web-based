@@ -8,11 +8,21 @@ import { motion } from "motion/react";
 import { cn } from "./lib/utils";
 import Content from "./Components/Pages/Content";
 import { useHotkeys } from "react-hotkeys-hook";
+import { createBrowserRouter } from "react-router";
+
+const router = createBrowserRouter([
+  {
+    path: "/dashboard",
+    Component: App,
+  },
+]);
 
 function App() {
   const [globalTheme, setTheme] = useState("light");
 
-  useHotkeys("alt+t", () => {globalTheme == "light" ? setTheme("dark") : setTheme("light")});
+  useHotkeys("alt+t", () => {
+    globalTheme == "light" ? setTheme("dark") : setTheme("light");
+  });
 
   const handleClick = () => {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));

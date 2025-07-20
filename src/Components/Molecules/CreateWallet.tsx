@@ -72,7 +72,7 @@ const CreateWallet = ({
           "roundedl-xl border-amber-300 text-white",
         )}
       >
-        <Button onClick={} className="roundedl-lg cursor-pointer border-2 border-amber-300 hover:text-amber-400 bg-amber-600/90 text-lg font-bold text-amber-900 hover:bg-black/70">
+        <Button className="roundedl-lg cursor-pointer border-2 border-amber-300 bg-amber-600/90 text-lg font-bold text-amber-900 hover:bg-black/70 hover:text-amber-400">
           Go to wallet
         </Button>
       </motion.div>
