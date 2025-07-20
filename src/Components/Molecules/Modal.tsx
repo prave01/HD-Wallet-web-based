@@ -45,12 +45,12 @@ const Modal = ({
               // opacity: { delay: 1, duration: 0.5 },
               scale: { delay: 0.2, duration: 0.4, type: "tween" },
             }}
-            className="h-[95%] w-[95%] rounded-xl border-2 border-amber-600 bg-black/40 p-1 pt-16 backdrop-blur-2xl"
+            className="h-[95%] w-[95%] rounded-xl border-2 border-amber-600 bg-black/40  backdrop-blur-2xl"
           >
             {" "}
             <Button
               onClick={() => setOpen(false)}
-              className="text-primary absolute top-0 right-0 mt-2 mr-2 cursor-pointer border-2 border-amber-600 bg-amber-700 text-lg font-medium hover:bg-transparent hover:text-amber-200"
+              className="text-primary absolute z-10 top-0 right-0 mt-2 mr-2 cursor-pointer border-2 border-amber-600 bg-amber-700 text-lg font-medium hover:bg-transparent hover:text-amber-200"
             >
               {" "}
               Close{" "}
