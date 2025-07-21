@@ -16,6 +16,8 @@
     "@radix-ui/react-slot": "^1.2.3",
     "@react-router/dev": "^7.7.0",
     "@tailwindcss/vite": "^4.1.11",
+    "@tanstack/react-router": "^1.129.0",
+    "@tanstack/react-router-devtools": "^1.129.0",
     "@types/bip39": "^3.0.4",
     "@types/rollup": "^0.54.0",
     "@types/zxcvbn": "^4.4.5",
@@ -48,6 +50,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
+    "@tanstack/router-plugin": "^1.129.0",
     "@types/node": "^24.0.10",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
