@@ -70,7 +70,7 @@ const CreatePassword = ({
 						onPaste={(e) => e.preventDefault()}
 						required
 						disabled={result.score! >= 4 && SubmitClick ? true : false}
-						className="text-primary border-0 bg-amber-900 outline-0"
+						className="text-primary h-[30px] w-full max-w-[400px] border-0 bg-amber-900 p-4 outline-0"
 						onInput={(target) => {
 							target.preventDefault();
 							setCurrentPassword(target.currentTarget.value);
@@ -89,7 +89,7 @@ const CreatePassword = ({
 						onPaste={(e) => e.preventDefault()}
 						type="password"
 						disabled={result.score! >= 4 && SubmitClick ? true : false}
-						className="text-primary border-0 bg-amber-900 outline-0"
+						className="text-primary h-[30px] w-full max-w-[400px] border-0 bg-amber-900 p-4 outline-0"
 						onInput={(target) => {
 							setConfirmPassword(target.currentTarget.value);
 						}}
