@@ -8,16 +8,14 @@ export const Route = createFileRoute("/Dashboard/")({
 });
 
 function RouteComponent() {
-  const data = JSON.parse(localStorage.getItem("mobswallet") || "");
-  console.log(data);
-  useEffect(() => {
-    (async () => {
-      await CreateWallet(data);
-    })();
-  }, []);
+  const data: LocalStorage = JSON.parse(
+    localStorage.getItem("mobswallet") || "",
+  );
+  console.log("wallets", data.totalWallets);
+
   return (
-    <div className="text-wrap">
-      {}
+    <div className="text-wrap text-black">
+      {data.totalWallets}
       <Dashboard />
     </div>
   );
