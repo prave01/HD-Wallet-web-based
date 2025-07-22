@@ -28,7 +28,6 @@ const GenerateMnemonics = ({
 
 	async function fetchMnemonic() {
 		setLoader(true);
-
 		const result = await generateWalletMnemonic();
 		setCurrentMnemonic(result.split(" "));
 		setLoader(false);
