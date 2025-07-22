@@ -1,35 +1,49 @@
-import { Card, CardContent } from "@/Shadcn_Components/shadcn_ui/card";
+import { Button } from "@/Shadcn_Components/shadcn_ui/button";
+import Accounts from "../Molecules/Accounts";
+import { useState } from "react";
 
 const Dashboard = ({
 	accounts,
 }: {
 	accounts: Array<{ key: string; value: LocalStorage }>;
 }) => {
+	const [currentAcc, SetCurrentAcc] = useState<number>(0);
+
 	return (
-		<div className="flex h-screen w-screen flex-col">
+		<div className="flex h-screen w-screen flex-col items-center justify-between">
 			<div className="flex h-fit w-full justify-end p-2">
 				<span className="font-heads text-primary pt-6 text-7xl font-medium tracking-widest">
 					DASHBOARD
 				</span>
 			</div>
 
-			<div className="flex h-full w-full flex-col items-start justify-center pl-10">
-				<div className="jus ftify-center relative flex w-fit flex-col items-start">
-					<p className="absolute top-0 -z-10 translate-x-[0px] -translate-y-10 rounded-2xl bg-amber-400 p-2 pb-10 text-xl font-bold text-amber-800">
-						Accounts
-					</p>
-					<Card className="h-[100px] w-[250px] rounded-lg border-0 bg-amber-400 py-2">
-						<CardContent className="px-2 space-y-2">
-							{accounts.map((i, idx) => (
-								<div
-									key={idx}
-									className="w-full rounded-sm bg-amber-600 px-2 py-1 text-lg"
-								>
-									{i.key}
-								</div>
-							))}
-						</CardContent>
-					</Card>
+			<div className="flex h-[60%] w-[90%] -translate-y-32 items-start justify-center gap-x-10 pl-10">
+				<div className="relative flex w-fit translate-y-9 flex-col items-start justify-center">
+					<Accounts setCurrentAcc={SetCurrentAcc} accounts={accounts} />
+				</div>
+				<hr className="h-full w-[1px] rounded-full bg-gray-500/40" />
+				<div className="relative h-full w-full overflow-hidden rounded-lg border-2 border-amber-600">
+					<img
+						src="./bg_image.png"
+						className="absolute inset-0 -z-10 h-full w-full object-cover"
+						alt="bg"
+					/>
+
+					<div className="absolute inset-0 z-10 bg-black/70 backdrop-blur-md">
+						<div className="flex gap-x-3 px-4">
+							{Array(currentAcc)
+								.fill(null)
+								.map((_, idx) => (
+									<Button
+										key={idx}
+										className="w-fit rounded-t-none rounded-b-lg bg-amber-950 px-2 py-1 text-lg font-semibold text-white hover:bg-amber-400 hover:text-amber-950"
+									>
+										Wallet {idx + 1}
+									</Button>
+								))}
+							<Button className="w-fit rounded-t-none rounded-b-lg bg-amber-950 p-4 text-xl font-semibold text-white hover:bg-amber-400 hover:text-amber-950">+</Button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
