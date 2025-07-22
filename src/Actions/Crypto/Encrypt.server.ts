@@ -31,6 +31,7 @@ export async function Encrypt(password: string, mnemonic_text: string) {
     salt: bs58.encode(salt),
     digest,
     iterations,
-    totalWallets: 0,
+    totalWallets: 1,
   };
 }
+
