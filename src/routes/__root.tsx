@@ -32,7 +32,7 @@ const RootRoute = () => {
 				</div>
 				<motion.div
 					onClick={handleClick}
-					className="absolute z-50 cursor-pointer pt-14 pl-5"
+					className="absolute z-50 cursor-pointer pt-14 pl-6"
 				>
 					{globalTheme === "light" ? <Morning /> : <Night />}
 				</motion.div>
