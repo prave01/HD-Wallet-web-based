@@ -5,4 +5,5 @@ type LocalStorage = {
   salt: string;
   digest: string;
   iterations: number;
+  totalWallets: number;
 };
