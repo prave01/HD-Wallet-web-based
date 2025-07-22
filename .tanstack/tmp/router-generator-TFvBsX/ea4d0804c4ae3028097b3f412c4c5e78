@@ -11,7 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/Dashboard/index'
-import { Route as DashboardAccNoWallNoRouteImport } from './routes/Dashboard/$AccNo/$WallNo'
+import { Route as DashboardAccountsAccNoRouteImport } from './routes/Dashboard/Accounts/$AccNo'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,40 +23,40 @@ const DashboardIndexRoute = DashboardIndexRouteImport.update({
   path: '/Dashboard/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardAccNoWallNoRoute = DashboardAccNoWallNoRouteImport.update({
-  id: '/Dashboard/$AccNo/$WallNo',
-  path: '/Dashboard/$AccNo/$WallNo',
+const DashboardAccountsAccNoRoute = DashboardAccountsAccNoRouteImport.update({
+  id: '/Dashboard/Accounts/$AccNo',
+  path: '/Dashboard/Accounts/$AccNo',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/Dashboard': typeof DashboardIndexRoute
-  '/Dashboard/$AccNo/$WallNo': typeof DashboardAccNoWallNoRoute
+  '/Dashboard/Accounts/$AccNo': typeof DashboardAccountsAccNoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/Dashboard': typeof DashboardIndexRoute
-  '/Dashboard/$AccNo/$WallNo': typeof DashboardAccNoWallNoRoute
+  '/Dashboard/Accounts/$AccNo': typeof DashboardAccountsAccNoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/Dashboard/': typeof DashboardIndexRoute
-  '/Dashboard/$AccNo/$WallNo': typeof DashboardAccNoWallNoRoute
+  '/Dashboard/Accounts/$AccNo': typeof DashboardAccountsAccNoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/Dashboard' | '/Dashboard/$AccNo/$WallNo'
+  fullPaths: '/' | '/Dashboard' | '/Dashboard/Accounts/$AccNo'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/Dashboard' | '/Dashboard/$AccNo/$WallNo'
-  id: '__root__' | '/' | '/Dashboard/' | '/Dashboard/$AccNo/$WallNo'
+  to: '/' | '/Dashboard' | '/Dashboard/Accounts/$AccNo'
+  id: '__root__' | '/' | '/Dashboard/' | '/Dashboard/Accounts/$AccNo'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
-  DashboardAccNoWallNoRoute: typeof DashboardAccNoWallNoRoute
+  DashboardAccountsAccNoRoute: typeof DashboardAccountsAccNoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,11 +75,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/Dashboard/$AccNo/$WallNo': {
-      id: '/Dashboard/$AccNo/$WallNo'
-      path: '/Dashboard/$AccNo/$WallNo'
-      fullPath: '/Dashboard/$AccNo/$WallNo'
-      preLoaderRoute: typeof DashboardAccNoWallNoRouteImport
+    '/Dashboard/Accounts/$AccNo': {
+      id: '/Dashboard/Accounts/$AccNo'
+      path: '/Dashboard/Accounts/$AccNo'
+      fullPath: '/Dashboard/Accounts/$AccNo'
+      preLoaderRoute: typeof DashboardAccountsAccNoRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -88,7 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardIndexRoute: DashboardIndexRoute,
-  DashboardAccNoWallNoRoute: DashboardAccNoWallNoRoute,
+  DashboardAccountsAccNoRoute: DashboardAccountsAccNoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

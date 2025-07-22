@@ -73,7 +73,7 @@ const CreateWallet = ({
           "roundedl-xl border-amber-300 text-white",
         )}
       >
-        <Link to="/Dashboard">
+        <Link to="/Dashboard/$AccNo/$WallNo" params={{AccNo:"1",WallNo:"2"}}>
           <Button className="roundedl-lg cursor-pointer border-2 border-amber-300 bg-amber-600/90 text-lg font-bold text-amber-900 hover:bg-black/70 hover:text-amber-400">
             Go to wallet
           </Button>

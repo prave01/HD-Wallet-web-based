@@ -1,10 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/Dashboard/Accounts/$AccNo")({
+export const Route = createFileRoute("/Dashboard/$AccNo/$WallNo")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
   const data = Route.useParams();
-  return <div>Hello {data.AccNo}</div>;
+  console.log(data);
+
+  return <div>Hello</div>;
 }
