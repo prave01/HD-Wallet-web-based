@@ -1,5 +1,5 @@
 import { Encrypt } from "@/Actions/Crypto/Encrypt.server";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SyncLoader } from "react-spinners";
 import { CheckIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -18,19 +18,22 @@ const CreateWallet = ({
 
 	const [isStoring, setIsStoring] = useState<boolean>(false);
 
+	const hasRun = useRef(false);
+
 	useEffect(() => {
+		if (hasRun.current) return;
+		hasRun.current = true;
+
 		if (!password || !mnemonics) return;
 
 		const encryptData = async () => {
 			setIsEncrypting(true);
-
 			try {
 				const encrypted = await Encrypt(password, mnemonics);
 				setIsEncrypting(false);
 				setIsStoring(true);
 
 				const uniqueWallet = `mobswallet-${crypto.randomUUID().slice(0, 8)}`;
-
 				localStorage.setItem(uniqueWallet, JSON.stringify(encrypted));
 				setIsStoring(false);
 			} catch (err) {
@@ -41,8 +44,7 @@ const CreateWallet = ({
 		};
 
 		encryptData();
-	}, [password, mnemonics]);
-
+	}, []);
 	return (
 		<div className="flex h-auto w-[300px] flex-col items-center justify-center gap-y-6 text-xl text-orange-800">
 			<motion.div
