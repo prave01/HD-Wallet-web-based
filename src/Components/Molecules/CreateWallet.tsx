@@ -6,13 +6,16 @@ import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 import { Button } from "@/Shadcn_Components/shadcn_ui/button";
 import { Link } from "@tanstack/react-router";
+import { GetAccountPublicKeys } from "@/Actions/Wallet_Utils/GetKeys.server";
 
 const CreateWallet = ({
 	mnemonics,
 	password,
+	coin,
 }: {
 	mnemonics: string;
 	password: string;
+	coin: "sol" | "eth";
 }) => {
 	const [isEncrypting, setIsEncrypting] = useState<boolean>(false);
 
@@ -29,12 +32,21 @@ const CreateWallet = ({
 		const encryptData = async () => {
 			setIsEncrypting(true);
 			try {
-				const encrypted = await Encrypt(password, mnemonics);
+				const encrypted = await Encrypt(password, mnemonics, coin);
 				setIsEncrypting(false);
 				setIsStoring(true);
-
 				const uniqueWallet = `mobswallet-${crypto.randomUUID().slice(0, 8)}`;
 				localStorage.setItem(uniqueWallet, JSON.stringify(encrypted));
+
+				const PublicKeys = await GetAccountPublicKeys(
+					JSON.parse(localStorage.getItem(uniqueWallet) || ""),
+					password,
+				);
+
+				const pubData = [{ [uniqueWallet]: PublicKeys }];
+
+				localStorage.setItem("publickey-store", JSON.stringify(pubData));
+
 				setIsStoring(false);
 			} catch (err) {
 				console.error("Encryption error:", err);
