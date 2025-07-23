@@ -1,6 +1,8 @@
 import { Button } from "@/Shadcn_Components/shadcn_ui/button";
 import Accounts from "../Molecules/Accounts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { CreateWallet } from "@/Actions/Wallet_Utils/CreateWallet.server";
+import Modal from "../Molecules/Modal";
 
 const Dashboard = ({
 	accounts,
@@ -9,9 +11,25 @@ const Dashboard = ({
 }) => {
 	const [currentAcc, SetCurrentAcc] = useState<number>(0);
 
+	const [publicKeys, setPublicKeys] = useState<Array<string> | null>([]);
+
+	const [currentWallet, setCurrentWallet] = useState<number>(0);
+
+  // const handleCreate = ()=>{
+  //   const createNewWall = CreateWallet(Loca )
+  // }
+
+	useEffect(() => {
+		const acc = accounts[currentAcc];
+		if (acc) {
+			const local = JSON.parse(localStorage.getItem("publickey-store") || "");
+			setPublicKeys(local[currentAcc][accounts[currentAcc].key]);
+		}
+	}, [currentAcc, accounts]);
+
 	return (
 		<div className="flex h-screen w-screen flex-col items-center justify-between">
-			<div className="flex h-fit w-full justify-end p-2">
+      <div className="flex h-fit w-full justify-end p-2">
 				<span className="font-heads text-primary pt-6 text-7xl font-medium tracking-widest">
 					DASHBOARD
 				</span>
@@ -41,7 +59,12 @@ const Dashboard = ({
 										Wallet {idx + 1}
 									</Button>
 								))}
-							<Button className="w-fit rounded-t-none rounded-b-lg bg-amber-950 p-4 text-xl font-semibold text-white hover:bg-amber-400 hover:text-amber-950">+</Button>
+							<Button onClick={handleCreate} className="w-fit rounded-t-none rounded-b-lg bg-amber-950 p-4 text-xl font-semibold text-white hover:bg-amber-400 hover:text-amber-950">
+								+
+							</Button>
+							<div className="h-auto bg-white text-xl text-black">
+              {publicKeys}
+              </div>
 						</div>
 					</div>
 				</div>
