@@ -10,7 +10,7 @@ const NewAccount = () => {
 
 	const [password, setPassword] = useState<string>("");
 
-	const [coin, setCoin] = useState<string>("");
+	const [coin, setCoin] = useState<"sol" | "eth">("sol");
 
 	const [mnemonics, setMnemonics] = useState<string>("");
 
@@ -21,7 +21,7 @@ const NewAccount = () => {
 	];
 
 	const FinalStep = useMemo(() => {
-		return <CreateWallet mnemonics={mnemonics} password={password} />;
+		return <CreateWallet coin={coin} mnemonics={mnemonics} password={password} />;
 	}, [mnemonics, password]);
 
 	const Data = [
@@ -37,11 +37,7 @@ const NewAccount = () => {
 				className="absolute top-10 w-full p-4"
 				data={Data}
 			/>
-			{currentComp < Data.length ? (
-				Components[currentComp]
-			) : (
-			  FinalStep
-      )}
+			{currentComp < Data.length ? Components[currentComp] : FinalStep}
 		</div>
 	);
 };

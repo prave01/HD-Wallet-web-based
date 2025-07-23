@@ -1,4 +1,4 @@
-import { CreateWallet } from "@/Actions/CreateWallet.server";
+import { CreateWallet } from "@/Actions/Wallet_Utils/CreateWallet.server";
 import Dashboard from "@/Components/Pages/Dashboard";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect } from "react";
@@ -30,4 +30,4 @@ function RouteComponent() {
 			<Dashboard accounts={accounts} />
 		</div>
 	);
-}
+
