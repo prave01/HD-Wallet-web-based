@@ -10,7 +10,7 @@ const SelectCoin = ({
 	setCoin,
 	setNext,
 }: {
-	setCoin: (message: string) => void;
+	setCoin: (message: "sol" | "eth") => void;
 	setNext: (message: any) => void;
 }) => {
 	return (
