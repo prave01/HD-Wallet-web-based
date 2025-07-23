@@ -2,7 +2,7 @@ import nacl from "tweetnacl";
 import bs58 from "bs58";
 import DerivationKey from "./DeriveEncryptionKey.server.ts";
 
-export async function Encrypt(password: string, mnemonic_text: string) {
+export async function Encrypt(password: string, mnemonic_text: string, coin: "sol" | "eth") {
   const iterations = 600000;
   const digest = "sha256";
   const kdf = "pbkdf2";
@@ -32,6 +32,7 @@ export async function Encrypt(password: string, mnemonic_text: string) {
     digest,
     iterations,
     totalWallets: 1,
+    coinType: coin 
   };
 }
 
