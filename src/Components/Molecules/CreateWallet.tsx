@@ -47,7 +47,6 @@ const CreateWallet = ({
 
 				localStorage.setItem("publickey-store", JSON.stringify(pubData));
 
-
 				setIsStoring(false);
 			} catch (err) {
 				console.error("Encryption error:", err);

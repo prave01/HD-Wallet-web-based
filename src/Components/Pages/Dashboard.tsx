@@ -15,9 +15,9 @@ const Dashboard = ({
 
 	const [currentWallet, setCurrentWallet] = useState<number>(0);
 
-	// const handleCreate = ()=>{
-	//   const createNewWall = CreateWallet(Loca )
-	// }
+	const handleCreate = () => {
+		const createNewWall = CreateWallet(Loca);
+	};
 
 	useEffect(() => {
 		const acc = accounts[currentAcc];
