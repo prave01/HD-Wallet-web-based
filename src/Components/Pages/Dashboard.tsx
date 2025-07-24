@@ -15,9 +15,9 @@ const Dashboard = ({
 
 	const [currentWallet, setCurrentWallet] = useState<number>(0);
 
-  // const handleCreate = ()=>{
-  //   const createNewWall = CreateWallet(Loca )
-  // }
+	// const handleCreate = ()=>{
+	//   const createNewWall = CreateWallet(Loca )
+	// }
 
 	useEffect(() => {
 		const acc = accounts[currentAcc];
@@ -29,7 +29,7 @@ const Dashboard = ({
 
 	return (
 		<div className="flex h-screen w-screen flex-col items-center justify-between">
-      <div className="flex h-fit w-full justify-end p-2">
+			<div className="flex h-fit w-full justify-end p-2">
 				<span className="font-heads text-primary pt-6 text-7xl font-medium tracking-widest">
 					DASHBOARD
 				</span>
@@ -59,12 +59,12 @@ const Dashboard = ({
 										Wallet {idx + 1}
 									</Button>
 								))}
-							<Button onClick={handleCreate} className="w-fit rounded-t-none rounded-b-lg bg-amber-950 p-4 text-xl font-semibold text-white hover:bg-amber-400 hover:text-amber-950">
+							<Button className="w-fit rounded-t-none rounded-b-lg bg-amber-950 p-4 text-xl font-semibold text-white hover:bg-amber-400 hover:text-amber-950">
 								+
 							</Button>
 							<div className="h-auto bg-white text-xl text-black">
-              {publicKeys}
-              </div>
+								{publicKeys}
+							</div>
 						</div>
 					</div>
 				</div>

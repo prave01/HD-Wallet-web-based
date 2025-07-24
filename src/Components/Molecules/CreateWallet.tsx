@@ -5,7 +5,7 @@ import { CheckIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 import { Button } from "@/Shadcn_Components/shadcn_ui/button";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { GetAccountPublicKeys } from "@/Actions/Wallet_Utils/GetKeys.server";
 
 const CreateWallet = ({
@@ -46,6 +46,7 @@ const CreateWallet = ({
 				const pubData = [{ [uniqueWallet]: PublicKeys }];
 
 				localStorage.setItem("publickey-store", JSON.stringify(pubData));
+
 
 				setIsStoring(false);
 			} catch (err) {
