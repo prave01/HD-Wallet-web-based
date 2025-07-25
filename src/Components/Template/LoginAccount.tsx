@@ -37,33 +37,38 @@ const LoginAccount = () => {
 	}
 
 	const handleLogin = async () => {
-		const PublicKeys = await CheckPassword(accounts[0].value, password);
+		try {
+			const PublicKeys = await CheckPassword(accounts[0].value, password);
+			if (PublicKeys === true) {
+				const pubData = await Promise.all(
+					accounts.map(async (account) => {
+						const accountKeys = await GetAccountPublicKeys(
+							account.value,
+							password,
+						);
+						return { [account.key]: accountKeys };
+					}),
+				);
 
-		if (PublicKeys) {
-			const pubData = await Promise.all(
-				accounts.map(async (account) => {
-					const accountKeys = await GetAccountPublicKeys(
-						account.value,
-						password,
-					);
-					return { [account.key]: accountKeys };
-				}),
-			);
+				localStorage.setItem("public-key-store", JSON.stringify(pubData));
+				console.log("Public data stored:", pubData);
 
-			localStorage.setItem("public-key-store", JSON.stringify(pubData));
-			console.log(pubData);
-			const sessionToken = crypto.randomUUID();
-			const expiresInMinutes = 60;
-			const expirationTime = Date.now() + expiresInMinutes * 60 * 1000;
+				const sessionToken = crypto.randomUUID();
+				const expiresInMinutes = 60;
+				const expirationTime = Date.now() + expiresInMinutes * 60 * 1000;
 
-			const session = {
-				token: sessionToken,
-				expiresAt: expirationTime,
-			};
+				const session = {
+					token: sessionToken,
+					expiresAt: expirationTime,
+				};
 
-			localStorage.setItem("session", JSON.stringify(session));
-
-			navigate({ to: "/Dashboard" });
+				localStorage.setItem("session", JSON.stringify(session));
+				navigate({ to: "/Dashboard" });
+			} else {
+				console.warn("Invalid password or public keys not found.");
+			}
+		} catch (error) {
+			console.error("Error in authentication flow:", error);
 		}
 	};
 
