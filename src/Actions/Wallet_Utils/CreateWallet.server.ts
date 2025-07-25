@@ -8,7 +8,7 @@ export async function CreateWallet(
 	localData: LocalStorage,
 ): Promise<Array<string>> {
 	try {
-		const data = await Decrypt("Praveen@10032004", localData);
+		const data = await Decrypt("Praveen@10", localData);
 
 		const seed = mnemonicToSeedSync(data); // keep as Buffer
 
