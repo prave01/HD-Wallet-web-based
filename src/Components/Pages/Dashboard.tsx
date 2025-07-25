@@ -3,6 +3,7 @@ import Accounts from "../Molecules/Accounts";
 import { useEffect, useState } from "react";
 import { CreateWallet } from "@/Actions/Wallet_Utils/CreateWallet.server";
 import Modal from "../Molecules/Modal";
+import { GetAccountPublicKeys } from "@/Actions/Wallet_Utils/GetKeys.server";
 
 const Dashboard = ({
 	accounts,
@@ -16,14 +17,35 @@ const Dashboard = ({
 	const [currentWallet, setCurrentWallet] = useState<number>(0);
 
 	const handleCreate = () => {
-		const createNewWall = CreateWallet(Loca);
+		const acc = accounts[currentAcc];
+		if (acc) {
+			const previousValue: LocalStorage = JSON.parse(
+				localStorage.getItem(acc.key) || "",
+			);
+
+			previousValue.totalWallets += 1;
+
+			localStorage.setItem(acc.key, JSON.stringify(previousValue));
+	
+      window.dispatchEvent
+    }
+
 	};
 
 	useEffect(() => {
 		const acc = accounts[currentAcc];
 		if (acc) {
-			const local = JSON.parse(localStorage.getItem("publickey-store") || "");
-			setPublicKeys(local[currentAcc][accounts[currentAcc].key]);
+			const raw = localStorage.getItem("publickey-store");
+			if (!raw) return;
+
+			try {
+				const local = JSON.parse(raw);
+				if (local[currentAcc] && acc.key) {
+					setPublicKeys(local[currentAcc][acc.key]);
+				}
+			} catch (e) {
+				console.error("Failed to parse localStorage item:", e);
+			}
 		}
 	}, [currentAcc, accounts]);
 

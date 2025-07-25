@@ -51,7 +51,6 @@ const LoginAccount = () => {
 				);
 
 				localStorage.setItem("public-key-store", JSON.stringify(pubData));
-				console.log("Public data stored:", pubData);
 
 				const sessionToken = crypto.randomUUID();
 				const expiresInMinutes = 60;
