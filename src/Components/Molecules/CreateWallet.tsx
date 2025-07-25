@@ -7,6 +7,7 @@ import { motion } from "motion/react";
 import { Button } from "@/Shadcn_Components/shadcn_ui/button";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { GetAccountPublicKeys } from "@/Actions/Wallet_Utils/GetKeys.server";
+import { useWalletStore } from "@/Store/WalletStore";
 
 const CreateWallet = ({
 	mnemonics,
@@ -46,6 +47,13 @@ const CreateWallet = ({
 				const pubData = [{ [uniqueWallet]: PublicKeys }];
 
 				localStorage.setItem("publickey-store", JSON.stringify(pubData));
+
+				useWalletStore.getState().setMnemonic("Account-1", mnemonics);
+
+				console.log(
+					"Zustand state",
+					useWalletStore((state) => state.accounts),
+				);
 
 				setIsStoring(false);
 			} catch (err) {
