@@ -7,9 +7,14 @@ import { Keypair } from "@solana/web3.js";
 export async function GetAccountPublicKeys(
 	localData: LocalStorage,
 	password: string,
-): Promise<Array<string>> {
+): Promise<Array<string> | boolean> {
 	try {
 		const data = await Decrypt(password, localData);
+
+		if (typeof data != "string") {
+			throw new Error(data.message);
+		}
+
 		const seed = mnemonicToSeedSync(data);
 
 		const pubKeys: Array<string> = [];
@@ -27,8 +32,8 @@ export async function GetAccountPublicKeys(
 			return pubKeys;
 		}
 		return pubKeys;
-	} catch (error: any) {
+	} catch (error) {
 		console.error(error);
-		return [];
+		return false;
 	}
 }
